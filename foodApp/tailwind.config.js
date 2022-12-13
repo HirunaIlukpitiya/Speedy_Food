@@ -1,7 +1,6 @@
 {import('tailwindcss').Config}
 //const defaultTheme = require('tailwindcss/defaultTheme')
 module.exports = {
-  darkMode:'class',
   content: ["./index.html",
   "./src/**/*.{vue,js,ts,jsx,tsx}",
   "./node_modules/flowbite/**/*.{js,jsx,ts,tsx,vue}",
@@ -13,5 +12,6 @@ module.exports = {
   },
   plugins: [require("daisyui"),
             require('flowbite/plugin'),
+            require('@tailwindcss/aspect-ratio'),
           ],
 }

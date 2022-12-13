@@ -7,7 +7,7 @@ import {RouterView} from 'vue-router'
 <template>
 <NavBar/>
 <RouterView />
-<Footer/>
+<Footer />
 </template>
 <style scoped>
 

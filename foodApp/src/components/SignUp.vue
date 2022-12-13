@@ -51,11 +51,12 @@ export default {
 };
 </script>
 <template>
-  <div className="hero min-h-screen bg-base-200">
+  <div className="hero min-h-screen bg-base-200" style="background-image: url('https://wallpaperaccess.com/full/462927.jpg')">
+    <div className="hero-overlay bg-opacity-60"></div>
     <div className="hero-content flex-col lg:flex-row-reverse">
       <div className="text-center lg:text-left">
-        <h1 className="text-5xl font-bold">Register now!</h1>
-        <p className="py-6">Food app details!</p>
+        <h1 className="text-5xl text-white font-bold">Register now!</h1>
+        <p className="py-6 text-white">Food app details!</p>
         <div v-if="errors" class="alert alert-error shadow-lg">
           <div>
             <svg

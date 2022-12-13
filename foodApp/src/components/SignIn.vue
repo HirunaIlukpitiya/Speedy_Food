@@ -45,16 +45,18 @@ export default {
 </script>
 
 <template>
-  <div className="hero min-h-screen bg-base-200">
+  <div className="hero min-h-screen" style="background-image: url('https://wallpaperaccess.com/full/462927.jpg')">
+    <div className="hero-overlay bg-opacity-60"></div>
     <div className="hero-content flex-col lg:flex-row-reverse">
       <div className="text-center lg:text-left">
-        <h1 className="text-5xl font-bold">Login now!</h1>
-        <p className="py-6">food app details can add here!</p>
+        <h1 className="text-5xl text-white font-bold">Login now!</h1>
+        <p className="py-6 text-white">food app details can add here!</p>
         <hr />
-        <p>Don't have an account?</p>
+        <p className="text-white">Don't have an account?</p>
         <button className="btn btn-primary" @click="goToSignup()">Sign Up</button>
         <div v-if="errors" class="alert alert-error shadow-lg">
           <div>
+          <hr />
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="stroke-current flex-shrink-0 h-6 w-6"
@@ -99,7 +101,6 @@ export default {
             </div>
             <div className="form-control mt-6">
               <button className="btn btn-primary" type="submit">SignIn</button>
-              <hr />
             </div>
           </div>
         </div>

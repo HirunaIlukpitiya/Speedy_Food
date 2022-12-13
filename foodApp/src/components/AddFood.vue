@@ -2,7 +2,7 @@
 </script>
 
 <template>
- <section class="max-w-4xl p-6 mx-auto bg-base-200 rounded-md shadow-md dark:bg-gray-800 mt-20">
+ <section class="max-w-4xl p-6 mx-auto bg-gray-100 rounded-md shadow-md dark:bg-gray-800 mt-20">
     <h1 class="text-xl font-bold text-black capitalize dark:text-white">Add Foods</h1>
     <form>
         <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
