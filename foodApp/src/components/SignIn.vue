@@ -27,6 +27,8 @@ export default {
           const success = response.data.success;
           this.response = response;
           localStorage.setItem('accessToken',response.data.token);
+          store.dispatch("fetchAccessToken");
+          store.dispatch("setaccessToken");
           this.$router.push({ name: "Dashboard" });
 
         })

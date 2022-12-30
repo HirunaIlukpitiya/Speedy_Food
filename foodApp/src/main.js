@@ -6,6 +6,7 @@ import 'flowbite'
 import store from './store'
 
 store.dispatch('fetchAccessToken');
+store.dispatch('setaccessToken');
 
 const app = createApp(App)
 app.use(router)

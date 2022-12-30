@@ -10,6 +10,7 @@ const store = createStore ({
     mutations:{
         logout: (state) => {
             state.accessToken = null;
+            state.isLoggedIn = false;
         },
         setaccessToken (state, accessToken){
             if (state.accessToken != null){
@@ -35,9 +36,7 @@ const store = createStore ({
         },
 
         logout({ commit }){
-            localStorage.removeItem('accessToken');
             commit('logout');
-            this.$router.push('./SignIn');
         }
     },
 })
