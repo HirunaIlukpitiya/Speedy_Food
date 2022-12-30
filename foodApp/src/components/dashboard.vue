@@ -1,29 +1,37 @@
 <script>
-const products = [
-  {
-    id: 1,
-    name: 'Basic Tee',
-    href: '#',
-    imageSrc: '',
-    imageAlt: "Front of men's Basic Tee in black.",
-    price: '$35',
-    color: 'Black',
+import axios from "axios";
+export default {
+  name: "Products",
+  data(){
+    return{
+      products: []
+    };
   },
-  // More products...
-]
+  mounted() {
+    axios
+    .get("http://localhost:8000/products/foods")
+    .then((response) => {
+      console.log(response);
+      this.products = response.data.foods;
+      console.log(response.data);
+    })
+    .catch((error) =>{
+      console.log(error);
+    })
+}
+}
 </script>
 <template>
+
 <!-- component -->
-<div style="background-image: url('https://pixelz.cc/wp-content/uploads/2018/07/chile-pepper-on-fire-uhd-4k-wallpaper.jpeg')">
-    <div className="hero-overlay bg-opacity-60"></div>
-<div class="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800">
-  <div class="absolute flex flex-col left-0 w-64 bg-white h-full border-r">
+<div class="min-h-screen float-left flex flex-col flex-auto flex-shrink-0 antialiased bg-gray-50 text-gray-800">
+  <div class="relative flex flex-col left-0 w-64 bg-white h-full border-r">
     <div class="flex items-center justify-center h-14 border-b">
       <div>Menu</div>
     </div>
     <div class="overflow-y-auto overflow-x-hidden flex-grow">
       <ul class="flex flex-col py-4 space-y-1">
-      <li class="nav-item"><router-link to="/AddFood.vue" class="nav-link">
+      <li class="nav-item"><router-link to="/AddFood" class="nav-link">
           <a href="#" class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6">
             <span class="inline-flex justify-center items-center ml-4">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
@@ -79,30 +87,29 @@ const products = [
     </div>
   </div>
 </div>
-<div class="overflow-hidden">
+<div class="float-right">
     <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
       <h2 class="text-2xl font-bold tracking-tight text-white">ITEM  LIST</h2>
 
       <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
         <div v-for="product in products" :key="product.id" class="group relative">
           <div class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-            <img :src="product.imageSrc" :alt="product.imageAlt" class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
+            <img :src="product.imageSrc" :alt="Fooditem" class="h-full w-full object-cover object-center lg:h-full lg:w-full" />
           </div>
           <div class="mt-4 flex justify-between">
             <div>
-              <h3 class="text-sm text-gray-700">
-                <a :href="product.href">
+              <h3 class="text-sm text-white">
+                <a :href = 'a'>
                   <span aria-hidden="true" class="absolute inset-0" />
                   {{ product.name }}
                 </a>
               </h3>
-              <p class="mt-1 text-sm text-gray-500">{{ product.color }}</p>
+              <p class="mt-1 text-sm text-white">{{ product.description }}</p>
             </div>
-            <p class="text-sm font-medium text-gray-900">{{ product.price }}</p>
+            <p class="text-sm font-medium text-white">{{ product.cost }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </template>

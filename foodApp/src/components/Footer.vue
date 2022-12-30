@@ -4,7 +4,7 @@
 
 <template>
 
-<footer class="bg-natural dark:bg-gray-900">
+<footer class=" dark:bg-gray-900">
     <div class="container flex flex-col items-center justify-between p-6 mx-auto space-y-4 sm:space-y-0 sm:flex-row">
         <a href="#" class="text-2xl font-bold text-white transition-colors duration-300 dark:text-white hover:text-blue-500 dark:hover:text-blue-400">Brand</a>
 

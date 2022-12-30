@@ -1,9 +1,9 @@
 <script>
-   export default {
+  export default {
 
     methods:{
       goToLogin(){
-        this.$router.push('./SignIn.vue');
+        this.$router.push('./SignIn');
       },
     },
    };

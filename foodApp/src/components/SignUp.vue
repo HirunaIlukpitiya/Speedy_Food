@@ -20,7 +20,7 @@ export default {
   methods: {
     submitForm() {
       axios
-        .post("http://localhost:5000/api/users/register", {
+        .post("http://localhost:8000/users/register", {
           firstName: this.firstName,
           lastName: this.lastName,
           email: this.email,
@@ -51,28 +51,15 @@ export default {
 };
 </script>
 <template>
-  <div className="hero min-h-screen bg-base-200" style="background-image: url('https://wallpaperaccess.com/full/462927.jpg')">
-    <div className="hero-overlay bg-opacity-60"></div>
+  <div className="hero min-h-screen bg-base-200" style="background-image: url('https://images.pexels.com/photos/326279/pexels-photo-326279.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">
+    <div className="hero-overlay bg-opacity-50"></div>
     <div className="hero-content flex-col lg:flex-row-reverse">
       <div className="text-center lg:text-left">
         <h1 className="text-5xl text-white font-bold">Register now!</h1>
         <p className="py-6 text-white">Food app details!</p>
         <div v-if="errors" class="alert alert-error shadow-lg">
           <div>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="stroke-current flex-shrink-0 h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span>{{ errors }}</span>
+            <span>😕 {{ errors }}</span>
           </div>
         </div>
         <div v-if="statusText" class="alert alert-success shadow-lg">
