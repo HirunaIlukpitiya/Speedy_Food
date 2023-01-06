@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
-import store from "../store"
+import store from "../store";
+import Swal from 'sweetalert2'
 export default {
   name: "Products",
   data(){
@@ -11,7 +12,7 @@ export default {
   methods: {
     getMenu:function(){
     axios
-    .get("http://localhost:8000/products/foods")
+    .get("http://localhost:8000/products/foods/all")
     .then((response) => {
       console.log(response);
       this.products = response.data.foods;
@@ -21,14 +22,33 @@ export default {
       console.log(error);
     })
   },
+  
   Logout(){
+  Swal.fire({
+  title: 'Are you sure?',
+  text: "You are going to log out from the system!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.fire(
+      'Logged Out!',
+      'You have successfully logged out!',
+      'success'
+    )
     localStorage.removeItem('accessToken');
     store.dispatch("logout");
     this.$router.push('./SignIn');
+  }
+})
 
   }
 },
 beforeMount(){
+  store.dispatch('DashboardVisited');
   this.getMenu();
 }
 }

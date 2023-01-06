@@ -1,12 +1,29 @@
 <script>
+import store from '../store';
+import Swal from 'sweetalert2';
+
   export default {
 
     methods:{
       goToLogin(){
         this.$router.push('./SignIn');
       },
+      welcomeBack:function(){
+        if(store.state.isLoggedIn === true && 
+        store.state.DashboardVisited === false &&
+        store.state.signInVisited === false){
+      Swal.fire(
+      'Welcome Back! 😃',
+      '',
+      'success'
+      )
+        }
+      }
     },
-   };
+    beforeMount(){
+  this.welcomeBack();
+    }
+  };
 </script>
 <template>
 <div className="hero min-h-screen" style="background-image: url('https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')">

@@ -4,7 +4,9 @@ const store = createStore ({
     state:{
         accessToken: null,
         user: null,
-        isLoggedIn: false
+        isLoggedIn: false,
+        signInVisited: false,
+        DashboardVisited: false,
     },
 
     mutations:{
@@ -22,6 +24,12 @@ const store = createStore ({
         },
         fetchAccessToken(state, accessToken){
             state.accessToken = accessToken
+        },
+        signInVisited: (state)=>{
+            state.signInVisited = true;
+        },
+        DashboardVisited: (state) =>{
+            state.DashboardVisited = true;
         }
 
     },
@@ -37,6 +45,14 @@ const store = createStore ({
 
         logout({ commit }){
             commit('logout');
+        },
+
+        DashboardVisited({commit}){
+            commit('DashboardVisited');
+        },
+        
+        signInVisited({commit}){
+            commit('signInVisited');
         }
     },
 })

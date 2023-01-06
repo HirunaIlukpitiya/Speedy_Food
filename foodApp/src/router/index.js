@@ -22,8 +22,19 @@ const router = createRouter({
         {
             path: "/dashboard",
             name: 'Dashboard',
-            component: () => import('../components/dashboard.vue')
-            
+            component: () => import('../components/dashboard.vue'),
+            beforeEnter: (to, from, next) => {
+                if (store.state.isLoggedIn === false) {
+                    next({path:'/SignIn',
+                    query:{
+                            redirecFrom: to.fullPath
+                    }
+                })
+                }
+                else{
+                    next()
+                }
+            }
         },
         {
             path: "/AddFood",

@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
-import store from "../store"
+import store from "../store";
+import Swal from 'sweetalert2';
 export default {
   mounted() {
     console.log("component mounted");
@@ -13,6 +14,20 @@ export default {
       errors: "",
       success: "",
     };
+  },
+
+  beforeRouteEnter (to, from, next){
+    console.log(from.query.redirectFrom);
+    if (to.query.redirectFrom === "/dashboard"){
+      next(Swal.fire(
+          'Sorry!!!',
+          'You have to signIn first',
+          'warning'
+        ))
+    }
+    else{
+      next()
+    }
   },
 
   methods: {
@@ -44,7 +59,21 @@ export default {
     goToSignup() {
       this.$router.push({ name: "SignUp" });
     },
+
+    logAlert:function(){
+      store.dispatch('signInVisited');
+      if(store.state.isLoggedIn === true){
+        Swal.fire(
+          'Already Loged in!',
+          'Go to Dashboard',
+          'success'
+        )
+      }
+    }
   },
+  beforeMount(){
+  this.logAlert();
+}
 };
 </script>
 
@@ -58,12 +87,14 @@ export default {
         <hr />
         <p className="text-white">Don't have an account?</p>
         <button className="btn btn-primary" @click="goToSignup()">Sign Up</button>
-        <div v-if="errors" class="alert alert-error shadow-lg">
+        <div v-if="errors">
+        <br/>
+        <div class="alert alert-error shadow-lg">
           <div>
-          <hr />
-            <span>😕 {{ errors }}</span>
+            <span>😕 <b>{{ errors }}</b></span>
           </div>
         </div>
+      </div>
       </div>
       <form @submit.prevent="submitForm">
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
