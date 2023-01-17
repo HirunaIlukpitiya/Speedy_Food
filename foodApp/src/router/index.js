@@ -40,6 +40,21 @@ const router = createRouter({
             path: "/AddFood",
             name: 'addFood',
             component: () => import('../components/AddFood.vue')
+        },
+        {
+            path: "/EditFood",
+            name: "EditFood",
+            component:() => import ("../components/editFood.vue")
+        },
+        {
+            path: "/feedback",
+            name: "feedback",
+            component:() => import("../components/feedback.vue")
+        },
+        {
+            path: "/order",
+            name: "order",
+            component:() => import("../components/order.vue")
         }
     ]
     })

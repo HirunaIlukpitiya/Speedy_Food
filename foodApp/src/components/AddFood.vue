@@ -1,5 +1,12 @@
 <script>
 import axios from "axios";
+import {Cloudinary} from "@cloudinary/url-gen";
+
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: "demo",
+  },
+});
 export default {
   mounted() {
     console.log("Page Loaded!");
@@ -10,6 +17,7 @@ export default {
       category: "",
       cost: "",
       description: "",
+      file: "",
     };
   },
 
@@ -21,7 +29,7 @@ export default {
           category: this.category,
           cost: this.cost,
           description: this.description,
-          //InStock: this.InStock,
+          file : this.file,
         })
         .then((response) => {
           console.log(response);
@@ -36,6 +44,7 @@ export default {
       this.category = "";
       this.cost = "";
       this.description = "";
+      this.file = "";
     },
   },
 };
@@ -125,8 +134,8 @@ export default {
                 >
                   <span class="">Upload a file</span>
                   <input
-                    id="file-upload"
-                    name="file-upload"
+                    id = "file"
+                    v-on:change="imageUpload()"
                     type="file"
                     class="sr-only"
                   />
@@ -139,8 +148,7 @@ export default {
       </div>
 
       <div class="flex justify-end mt-6">
-        <button
-          class="px-6 py-2 leading-5 text-black transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600"
+        <button className="btn btn-primary"
          type="submit">
           Save
         </button>
