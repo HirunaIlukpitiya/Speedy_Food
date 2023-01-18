@@ -1,35 +1,76 @@
 <script>
 import axios from "axios";
-import {Cloudinary} from "@cloudinary/url-gen";
-
-const cld = new Cloudinary({
-  cloud: {
-    cloudName: "demo",
-  },
-});
+import Uploader from "../services/uploadPhoto";
 export default {
+
   mounted() {
     console.log("Page Loaded!");
   },
+  name: "UploadWidget",
   data() {
     return {
       name: "",
       category: "",
       cost: "",
       description: "",
-      file: "",
+       file:"", 
+       url:"",
+      open: function () {
+      myWidget.open();
+    },
+    
     };
   },
-
+  props: {
+    msg: String,
+  },
   methods: {
-    submitForm() {
+    async uploadImage($event) {
+      console.log("came here 1");
+            const file = $event.target.files[0];
+            console.log("came here 2");
+            // if (!/\.(jpe?g|png)$/i.test(file.name)) return;
+
+           
+            try {
+                // const dataUrl = await this.readFile(file);
+                const uploader = new Uploader(file);
+                console.log("came here 3");
+                const url = await uploader.upload();
+                this.url=url            
+
+                console.log(url)
+
+
+                // this causes a problem when uploading the user name after changhing the image
+                // this.$store.commit('user/setImage', url);
+
+                // this.updatingImage = false;
+                // this.$store.commit('systembar/showMessage', {
+                //     message: 'Profile picture updated successfully',
+                //     type: 'success',
+                // });
+            } catch (error) {
+                console.log(error);
+
+                // this.updatingImage = false;
+                // this.$store.commit('systembar/showMessage', {
+                //     message: 'Error updating profile picture',
+                //     type: 'error',
+                // });
+            }
+        },
+
+submitForm() {
       axios
         .post("http://localhost:8000/products/food/new", {
           name: this.name,
           category: this.category,
           cost: this.cost,
           description: this.description,
-          file : this.file,
+          image_URL:this.url
+
+          // file: this.file
         })
         .then((response) => {
           console.log(response);
@@ -44,7 +85,7 @@ export default {
       this.category = "";
       this.cost = "";
       this.description = "";
-      this.file = "";
+      // this.file=""
     },
   },
 };
@@ -135,11 +176,15 @@ export default {
                   <span class="">Upload a file</span>
                   <input
                     id = "file"
-                    v-on:change="imageUpload()"
                     type="file"
                     class="sr-only"
+                    accept="image/*"
+                    @change="uploadImage($event)"
                   />
                 </label>
+                <!-- <button v-on:click="open" id="upload_widget" class="cloudinary-button">
+      Upload files
+    </button> -->
               </div>
               <p class="text-xs text-black">PNG, JPG, GIF up to 10MB</p>
             </div>
