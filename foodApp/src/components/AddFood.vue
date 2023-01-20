@@ -31,7 +31,7 @@ export default {
             console.log("came here 2");
             // if (!/\.(jpe?g|png)$/i.test(file.name)) return;
 
-           
+            this.isUploading = false;
             try {
                 // const dataUrl = await this.readFile(file);
                 const uploader = new Uploader(file);
@@ -40,7 +40,7 @@ export default {
                 this.url=url            
 
                 console.log(url)
-
+                this.isUploading = true;
 
                 // this causes a problem when uploading the user name after changhing the image
                 // this.$store.commit('user/setImage', url);
@@ -53,6 +53,9 @@ export default {
             } catch (error) {
                 console.log(error);
 
+
+
+                
                 // this.updatingImage = false;
                 // this.$store.commit('systembar/showMessage', {
                 //     message: 'Error updating profile picture',
@@ -60,6 +63,9 @@ export default {
                 // });
             }
         },
+buttonDisable(){
+
+},
 
 submitForm() {
       axios
@@ -177,7 +183,7 @@ submitForm() {
                   <input
                     id = "file"
                     type="file"
-                    class="sr-only"
+                  
                     accept="image/*"
                     @change="uploadImage($event)"
                   />
@@ -193,8 +199,8 @@ submitForm() {
       </div>
 
       <div class="flex justify-end mt-6">
-        <button className="btn btn-primary"
-         type="submit">
+        <button className="btn btn-primary"  
+         type="submit" >
           Save
         </button>
       </div>
