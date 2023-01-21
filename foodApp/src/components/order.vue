@@ -72,13 +72,13 @@
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                     {{ order.totalprice }}
                   </td>
-                  <td
+                  <!-- <td
                     class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6"
                   >
                     <a href="#" class="text-indigo-600 hover:text-indigo-900" @click:""
                       >Edit<span class="sr-only">, {{ order.KDU_ID }}</span></a
                     >
-                  </td>
+                  </td> -->
                 </tr>
               </tbody>
             </table>
