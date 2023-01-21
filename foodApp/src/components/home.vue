@@ -37,5 +37,3 @@ import Swal from 'sweetalert2';
   </div>
 </div>
 </template>
-<style>
-</style>
