@@ -38,17 +38,38 @@ export default {
             "You have successfully logged out!",
             "success"
           );
-          localStorage.removeItem("accessToken");
+          localStorage.removeItem("accessToken"); 
           store.dispatch("logout");
           this.$router.push("./SignIn");
         }
       });
     },
+ 
+    updatefood(id){
+          axios.put("http://localhost:8000/products/food/update"+id).then((response)=> {
+          console.log(response);
+    }).catch((error) => {
+          console.log(error);
+        })
+    },
+//     deletefood(result,id){
+//       axios.delete("http://localhost:8000/products/food/delete"+id)
+//       .then((response)=> {
+//         this.result.splice(id, 1)
+//         console.log(this.result);
+//     }).catch((error) => {
+//           console.log(error);
+//         })
+// },
+DeleteItem: function(product){
+    this.products.splice(this.products.indexOf(product), 1);
+}
   },
   beforeMount() {
     store.dispatch("DashboardVisited");
     this.getMenu();
   },
+  
 };
 </script>
 <template>
@@ -183,7 +204,7 @@ export default {
     <div
       class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
     >
-      <div v-for="product in products" :key="product.id">
+      <div v-for="product in products" :key="product.id" >
         <div class="group relative">
           <div
             class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80"
@@ -207,11 +228,11 @@ export default {
             <p class="text-sm font-medium text-white">{{ product.cost }}</p>
           </div>
         </div>
-        <button className="btn btn-primary relative" @click="getFoodId()">
+        <button className="btn btn-primary relative" >
           Edit
         </button>
         <div class="float-right">
-          <button className="btn btn-primary relative" @click="getFoodId()">
+          <button className="btn btn-primary relative"  @click="DeleteItem(product)">
             Delete
           </button>
         </div>
