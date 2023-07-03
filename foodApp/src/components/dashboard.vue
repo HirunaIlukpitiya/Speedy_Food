@@ -38,7 +38,7 @@ export default {
             "You have successfully logged out!",
             "success"
           );
-          localStorage.removeItem("accessToken"); 
+          localStorage.removeItem("accessToken");
           store.dispatch("logout");
           this.$router.push("./SignIn");
         }

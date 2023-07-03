@@ -13,6 +13,7 @@ const store = createStore ({
         logout: (state) => {
             state.accessToken = null;
             state.isLoggedIn = false;
+            localStorage.removeItem("accessToken");
         },
         setaccessToken (state, accessToken){
             if (state.accessToken != null){
