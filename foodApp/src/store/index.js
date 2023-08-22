@@ -7,6 +7,7 @@ const store = createStore ({
         isLoggedIn: false,
         signInVisited: false,
         DashboardVisited: false,
+        FoodID:null,
     },
 
     mutations:{
@@ -31,7 +32,10 @@ const store = createStore ({
         },
         DashboardVisited: (state) =>{
             state.DashboardVisited = true;
-        }
+        },
+        setUpdateId (state, foodID){
+                state.FoodID = foodID;
+        },
 
     },
 
@@ -54,7 +58,10 @@ const store = createStore ({
         
         signInVisited({commit}){
             commit('signInVisited');
-        }
+        },
+        setUpdateId({commit}, foodID){
+            commit('setUpdateId',foodID)
+        },
     },
 })
 export default store;

@@ -19,6 +19,8 @@
     "flowbite-vue": "^0.0.6",
     "nodeman": "^1.1.2",
     "sweetalert2": "^11.6.16",
+    "tailwindcss-animate": "^1.0.6",
+    "tailwindcss-animated": "^1.0.1",
     "vue": "^3.2.38",
     "vue-router": "^4.1.5",
     "vue3-i18n": "^1.1.5",

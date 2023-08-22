@@ -1,23 +1,27 @@
 
 <template>
   <div class="bg-white">
-    <div>
-      <h2 class="sr-only">Customer Reviews</h2>
+  <br>
+      <h2 class="text-2xl text-orange-400 text-center font-bold">C U S T O M E R  &nbsp;&nbsp; R E V I E W S </h2>
+      <br>
 
-      <div class="-my-10">
-        <div v-for="feedback in feedbacks" :key="feedback.id" class="flex space-x-4 text-sm text-gray-500">
-          <div class="flex-none py-10">
-            <img :src="a" alt="" class="h-10 w-10 rounded-full bg-gray-100" />
+
+      <div class=" h-screen">
+        <div v-for="feedback in feedbacks" :key="feedback.id" class="flex space-x-4 text-sm text-gray-500 animate-flip-down">
+          <div class="flex-none py-10 ">
+            <img src="./assets/avatar.jpg" alt="" class="h-10 w-10 rounded-full ring-red-600 bg-gray-100 animate-fade" />
           </div>
-          <div :class="[reviewIdx === 0 ? '' : 'border-t border-gray-200', 'flex-1 py-10']">
-            <h3 class="font-medium text-gray-900">anonymous</h3>
-            <div class="prose prose-sm mt-4 max-w-none text-gray-500"  v-html="feedback.fbMessage" />
+          <div class=" border-t border-orange-400 flex-1 py-10">
+            <h3 class="font-medium text-gray-900">{{ feedback.topic }}</h3>
+            <div class="prose prose-sm mt-4 max-w-none text-gray-500" /><span v-html="feedback.mfeedback"/>
+
           </div>
         </div>
       </div>
     </div>
-  </div>
 </template>
+
+
 
 <script >
 import axios from "axios";

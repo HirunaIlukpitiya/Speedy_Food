@@ -44,32 +44,30 @@ export default {
         }
       });
     },
- 
-    updatefood(id){
-          axios.put("http://localhost:8000/products/food/update"+id).then((response)=> {
-          console.log(response);
-    }).catch((error) => {
-          console.log(error);
-        })
+
+    updatefood(id) {
+      store.dispatch("setUpdateId",id);
     },
-//     deletefood(result,id){
-//       axios.delete("http://localhost:8000/products/food/delete"+id)
-//       .then((response)=> {
-//         this.result.splice(id, 1)
-//         console.log(this.result);
-//     }).catch((error) => {
-//           console.log(error);
-//         })
-// },
-DeleteItem: function(product){
-    this.products.splice(this.products.indexOf(product), 1);
-}
+    deletefood(id) {
+      console.log(id);
+      axios
+        .delete("http://localhost:8000/products/food/delete/" +id)
+        .then((response) => {
+          this.products.splice(id, 1);
+          console.log(this.response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    // DeleteItem: function (product) {
+    //   this.products.splice(this.products.indexOf(product), 1);
+    // },
   },
   beforeMount() {
     store.dispatch("DashboardVisited");
     this.getMenu();
   },
-  
 };
 </script>
 <template>
@@ -79,9 +77,9 @@ DeleteItem: function(product){
         <li class="nav-item">
           <router-link to="/AddFood" class="nav-link">
             <div
-              class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
+              class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 lg:pr-6"
             >
-              <span class="inline-flex justify-center items-center ml-4">
+              <span class="inline-flex justify-center items-center lg:ml-4">
                 <svg
                   class="w-5 h-5"
                   fill="none"
@@ -97,7 +95,10 @@ DeleteItem: function(product){
                   ></path>
                 </svg>
               </span>
-              <span class="ml-2 text-sm tracking-wide truncate">Add Items</span>
+              <span
+                class="invisible lg:visible ml-2 text-sm tracking-wide truncate"
+                >Add Items</span
+              >
             </div>
           </router-link>
         </li>
@@ -106,7 +107,7 @@ DeleteItem: function(product){
             <div
               class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
             >
-              <span class="inline-flex justify-center items-center ml-4">
+              <span class="inline-flex justify-center items-center lg:ml-4">
                 <svg
                   class="w-5 h-5"
                   fill="none"
@@ -122,11 +123,12 @@ DeleteItem: function(product){
                   ></path>
                 </svg>
               </span>
-              <span class="ml-2 text-sm tracking-wide truncate"
+              <span
+                class="invisible lg:visible ml-2 text-sm tracking-wide truncate"
                 >Orders&nbsp;</span
               >
               <span
-                class="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full"
+                class="invisible lg:visible px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-red-500 bg-red-50 rounded-full"
                 >{{ orderCount }}</span
               >
             </div>
@@ -137,7 +139,7 @@ DeleteItem: function(product){
             <div
               class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
             >
-              <span class="inline-flex justify-center items-center ml-4">
+              <span class="inline-flex justify-center items-center lg:ml-4">
                 <svg
                   class="w-5 h-5"
                   fill="none"
@@ -153,11 +155,12 @@ DeleteItem: function(product){
                   ></path>
                 </svg>
               </span>
-              <span class="ml-2 text-sm tracking-wide truncate"
+              <span
+                class="ml-2 text-sm tracking-wide truncate invisible lg:visible"
                 >Feedbacks&nbsp;</span
               >
               <span
-                class="px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-green-500 bg-green-50 rounded-full"
+                class="invisible lg:visible px-2 py-0.5 ml-auto text-xs font-medium tracking-wide text-green-500 bg-green-50 rounded-full"
                 >{{ feedbackCount }}</span
               >
             </div>
@@ -169,7 +172,7 @@ DeleteItem: function(product){
               <div
                 class="relative flex flex-row items-center h-11 focus:outline-none hover:bg-gray-50 text-white hover:text-gray-800 border-l-4 border-transparent hover:border-indigo-500 pr-6"
               >
-                <span class="inline-flex justify-center items-center ml-4">
+                <span class="inline-flex justify-center items-center lg:ml-4">
                   <svg
                     class="w-5 h-5"
                     fill="none"
@@ -185,7 +188,10 @@ DeleteItem: function(product){
                     ></path>
                   </svg>
                 </span>
-                <span class="ml-2 text-sm tracking-wide truncate">Logout</span>
+                <span
+                  class="ml-2 text-sm tracking-wide truncate invisible lg:visible"
+                  >Logout</span
+                >
               </div>
             </router-link>
           </li>
@@ -195,7 +201,7 @@ DeleteItem: function(product){
   </div>
 
   <!--end of navbar-->
-  
+
   <div
     class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8"
   >
@@ -204,7 +210,7 @@ DeleteItem: function(product){
     <div
       class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8"
     >
-      <div v-for="product in products" :key="product.id" >
+      <div v-for="product in products" :key="product.id">
         <div class="group relative">
           <div
             class="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80"
@@ -212,27 +218,27 @@ DeleteItem: function(product){
             <img
               :src="product.image_URL"
               :alt="product.imageSrc"
-              class="h-full w-full object-cover object-center lg:h-full lg:w-full"
+              class="h-full w-full object-cover object-center lg:h-full lg:w-full animate-fade animate-duration-[2000ms]"
             />
           </div>
           <div class="mt-4 flex justify-between">
             <div>
               <h3 class="text-sm text-white">
-                  <span
-                    aria-hidden="true"
-                    class="text-sm text-medium text-white"
-                  />
-                  {{ product.name }}
+                <span
+                  aria-hidden="true"
+                  class="text-sm text-medium text-white"
+                />
+                {{ product.name }}
               </h3>
             </div>
             <p class="text-sm font-medium text-white">{{ product.cost }}</p>
           </div>
         </div>
-        <button className="btn btn-primary relative" >
+        <button className="btn btn-primary relative" @click="updatefood(product._id)">
           Edit
         </button>
         <div class="float-right">
-          <button className="btn btn-primary relative"  @click="DeleteItem(product)">
+          <button className="btn btn-primary relative" @click="deletefood(product._id)">
             Delete
           </button>
         </div>

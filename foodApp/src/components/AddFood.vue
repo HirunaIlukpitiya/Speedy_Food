@@ -99,7 +99,7 @@ submitForm() {
 
 <template>
   <section
-    class="max-w-4xl p-6 mx-auto bg-gray-100 rounded-md shadow-md dark:bg-gray-800 mt-20"
+    class="max-w-4xl p-6 mx-auto bg-gray-100 rounded-md shadow-md dark:bg-gray-800 mt-20 animate-fade animate-duration-[2000ms]"
   >
     <h1 class="text-xl font-bold text-black capitalize dark:text-white">
       Add Foods

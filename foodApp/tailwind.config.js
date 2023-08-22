@@ -8,10 +8,15 @@ module.exports = {
 
 ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'Bar': ['Barbariska'],
+      }
+    },
   },
   plugins: [require("daisyui"),
             require('flowbite/plugin'),
             require('@tailwindcss/aspect-ratio'),
+            require('tailwindcss-animated'),
           ],
 }

@@ -4,7 +4,7 @@
 <template>
 
  
-   <div className="navbar bg-black text-white-content relative">
+   <div className="navbar bg-natural opacity-95 text-white-content relative">
        <div className="flex-1">
          <router-link to="/"> <img src="./assets/logo_kdu-2.png" class="mr-3 h-6 sm:h-10" alt="KDUlogo"/></router-link>
        </div>
