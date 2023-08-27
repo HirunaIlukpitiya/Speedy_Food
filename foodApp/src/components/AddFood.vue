@@ -2,7 +2,6 @@
 import axios from "axios";
 import Uploader from "../services/uploadPhoto";
 export default {
-
   mounted() {
     console.log("Page Loaded!");
   },
@@ -13,12 +12,11 @@ export default {
       category: "",
       cost: "",
       description: "",
-       file:"", 
-       url:"",
+      file: "",
+      url: "",
       open: function () {
-      myWidget.open();
-    },
-    
+        myWidget.open();
+      },
     };
   },
   props: {
@@ -27,54 +25,49 @@ export default {
   methods: {
     async uploadImage($event) {
       console.log("came here 1");
-            const file = $event.target.files[0];
-            console.log("came here 2");
-            // if (!/\.(jpe?g|png)$/i.test(file.name)) return;
+      const file = $event.target.files[0];
+      console.log("came here 2");
+      // if (!/\.(jpe?g|png)$/i.test(file.name)) return;
 
-            this.isUploading = false;
-            try {
-                // const dataUrl = await this.readFile(file);
-                const uploader = new Uploader(file);
-                console.log("came here 3");
-                const url = await uploader.upload();
-                this.url=url            
+      this.isUploading = false;
+      try {
+        // const dataUrl = await this.readFile(file);
+        const uploader = new Uploader(file);
+        console.log("came here 3");
+        const url = await uploader.upload();
+        this.url = url;
 
-                console.log(url)
-                this.isUploading = true;
+        console.log(url);
+        this.isUploading = true;
 
-                // this causes a problem when uploading the user name after changhing the image
-                // this.$store.commit('user/setImage', url);
+        // this causes a problem when uploading the user name after changhing the image
+        // this.$store.commit('user/setImage', url);
 
-                // this.updatingImage = false;
-                // this.$store.commit('systembar/showMessage', {
-                //     message: 'Profile picture updated successfully',
-                //     type: 'success',
-                // });
-            } catch (error) {
-                console.log(error);
+        // this.updatingImage = false;
+        // this.$store.commit('systembar/showMessage', {
+        //     message: 'Profile picture updated successfully',
+        //     type: 'success',
+        // });
+      } catch (error) {
+        console.log(error);
 
+        // this.updatingImage = false;
+        // this.$store.commit('systembar/showMessage', {
+        //     message: 'Error updating profile picture',
+        //     type: 'error',
+        // });
+      }
+    },
+    buttonDisable() {},
 
-
-                
-                // this.updatingImage = false;
-                // this.$store.commit('systembar/showMessage', {
-                //     message: 'Error updating profile picture',
-                //     type: 'error',
-                // });
-            }
-        },
-buttonDisable(){
-
-},
-
-submitForm() {
+    submitForm() {
       axios
         .post("http://localhost:8000/products/food/new", {
           name: this.name,
           category: this.category,
           cost: this.cost,
           description: this.description,
-          image_URL:this.url
+          image_URL: this.url,
 
           // file: this.file
         })
@@ -111,7 +104,7 @@ submitForm() {
             >Name</label
           >
           <input
-            v-model ="name"
+            v-model="name"
             type="text"
             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
           />
@@ -135,7 +128,8 @@ submitForm() {
           >
           <select
             class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-          v-model="category">
+            v-model="category"
+          >
             <option>mains</option>
             <option>pastry</option>
             <option>dessert</option>
@@ -181,9 +175,8 @@ submitForm() {
                 >
                   <span class="">Upload a file</span>
                   <input
-                    id = "file"
+                    id="file"
                     type="file"
-                  
                     accept="image/*"
                     @change="uploadImage($event)"
                   />
@@ -199,10 +192,7 @@ submitForm() {
       </div>
 
       <div class="flex justify-end mt-6">
-        <button className="btn btn-primary"  
-         type="submit" >
-          Save
-        </button>
+        <button className="btn btn-primary" type="submit">Save</button>
       </div>
     </form>
   </section>
